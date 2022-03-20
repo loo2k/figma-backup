@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>保住肥姑妈（Figma 源文件备份）</title>
+    <style>
+      html, body { margin: 0; padding: 0; }
+      body { min-height: 100vh; background-color: #EFF8FF; color: #72747B; }
+      a { color: #72747B; text-decoration: none; }
+      a:hover { color: #434549; }
+      .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; }
+      .container { max-width: 1000px; padding: 0 24px; margin: 0 auto; flex: 1;}
+      .navbar { margin: 0; padding: 15px 0; text-align: right; font-size: 14px; }
+      .navbar ul { margin:0; padding: 0; list-style: none; display: flex; align-items: center; justify-content: flex-end; column-gap: 14px; line-height: 32px; }
+      .intro { padding-top: 20px; margin-left: auto; margin-right: auto; text-align: center; }
+      .intro .title { font-weight: normal; font-size: 54px; margin: 0 0 10px 0; color: #000000; }
+      .intro .description { font-weight: normal; font-size: 18px; margin: 0 0 5px 0; }
+      .intro .opensource { color: #999999; font-size: 12px; margin: 0 0 20px 0; }
+      .intro .action { display: inline-block; text-align: left; font-size: 14px; padding: 0 20px; border-radius: 3px; border: 1px dashed #cccccc; background-color: #fafafa; margin: 20px 0; }
+      .intro .action a { text-decoration: underline; font-weight: bold; }
+      .intro .action .step { font-weight: bold; color: #333333; }
+      .intro .action .hint { font-size: 12px; color: #999999; }
+      .intro .action .hint a { color: #999999; font-weight: normal; }
+      .video-intro { margin: 30px 0; }
+      .video-intro .video-intro-title { font-weight: normal; font-size: 32px; margin: 0 0 20px 0; color: #000000; }
+      .video-intro .video-intro-play { width: 100%; max-width: 600px; height: auto; box-shadow: 0 15px 19px 6px rgb(0 0 0 / 5%); }
+      .wave { width: 100%; }
+      .wave svg { display: block; }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+
+      <div class="container">
+        <nav class="navbar">
+          <ul>
+            <li><a target="_blank" href="https://docs.qq.com/doc/DSWxvVnJsT1NrWFds">使用文档</a></li>
+            <li><a target="_blank" href="https://github.com/loo2k/figma-backup/issues/new">问题反馈</a></li>
+            <li><a target="_blank" href="https://github.com/loo2k/figma-backup">Github</a></li>
+          </ul>
+        </nav>
+
+        <div class="intro">
+          <h1 class="title">保住肥姑妈</h1>
+          <h2 class="description">Figma 源文件备份</h2>
+          <p class="opensource">代码已在 Github 上开源 安全可靠</p>
+          <div class="action">
+            <p class="step">第一步：安装 <a target="_blank" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey 插件 (Chrome)</a></p>
+            <p class="hint">
+              备用下载地址：
+              [<a target="_blank" href="https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/">Firefox</a>]
+              [<a target="_blank" href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd">Edge</a>]
+              [<a target="_blank" href="https://www.gugeapps.net/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">离线下载</a>]
+            </p>
+            <p class="step">第二步：安装 <a target="_blank" href="./figma.user.js">保住肥姑妈</a> 脚本</p>
+          </div>
+
+          <div class="video-intro">
+            <h2 class="video-intro-title">功能演示</h2>
+            <video class="video-intro-play" controls autoplay loop>
+              <source src="./images/intro.mp4" type="video/mp4">
+              <img src="./images/intro.png" alt="功能演示">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="wave">
+        <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="5%" stop-color="#002bdc88"></stop><stop offset="95%" stop-color="#32ded488"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,133 0,133 C 127.14285714285714,126.96428571428571 254.28571428571428,120.92857142857142 360,128 C 465.7142857142857,135.07142857142858 550,155.25 681,162 C 812,168.75 989.7142857142856,162.07142857142858 1124,155 C 1258.2857142857144,147.92857142857142 1349.1428571428573,140.46428571428572 1440,133 C 1440,133 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><defs><linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="5%" stop-color="#002bdcff"></stop><stop offset="95%" stop-color="#32ded4ff"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,266 0,266 C 143.3214285714286,274 286.6428571428572,282 399,296 C 511.3571428571428,310 592.7499999999998,330 697,312 C 801.2500000000002,294 928.3571428571429,238 1056,224 C 1183.642857142857,210 1311.8214285714284,238 1440,266 C 1440,266 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const account = 'figma.app'
+        const head = document.head || document.getElementsByTagName('head')[0]
+        const script = document.createElement('script')
+        script.defer = true
+        script.id = 'horizon-tracker'
+        script.src = 'https://horizon-assets.qq.com/analytics.js'
+        script.setAttribute('data-account', account)
+        head.appendChild(script)
+      })();
+    </script>
+  </body>
+</html>
