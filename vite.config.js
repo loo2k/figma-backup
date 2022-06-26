@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { createVuePlugin } from 'vite-plugin-vue2'
+import pkg from './package.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -45,14 +46,14 @@ export default defineConfig({
       const headers = `\
 // ==UserScript==
 // @name         保住肥姑妈（Figma 源文件备份）
-// @namespace    figma-backup
-// @version      0.1
-// @description  Figma 源文件备份
-// @author       Luke
+// @namespace    ${pkg.name}
+// @version      ${pkg.version}
+// @description  ${pkg.description}
+// @author       ${pkg.author}
 // @match        *://codesign.qq.com/*
 // @match        *://codesign.woa.com/*
 // @match        *://*.figma.com/*
-// @icon         <$ICON$>
+// @icon         https://www.google.com/s2/favicons?domain=codesign.qq.com
 // @grant        GM_xmlhttpRequest
 // @connect      www.figma.com
 // @connect      codesign.qq.com

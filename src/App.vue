@@ -51,74 +51,35 @@ export default {
 
     if (window.origin.includes('codesign')) {
       this.$track('plugin.app.mounted.codesign')
-
       const assetsFigmaBkId = 'figma-bk-assets-btn'
-      const headerFigmaBkId = 'figma-bk-header-btn'
-      
       const injectAssetsFigmaBk = () => {
-        const wsFigmaBk = document.getElementById(assetsFigmaBkId)
-        const wsToolbar = document.querySelector('.workspace-main__assets--opt')
+        let assetsFigmaBkEl = document.getElementById(assetsFigmaBkId)
+        let assetsPopup = document.querySelector('.assets-side-panel__header-right-popup')
+        
+        if (!assetsPopup || assetsFigmaBkEl) { return }
 
-        if (!wsFigmaBk && wsToolbar) {
-          wsToolbar.style.display = 'flex'
-          wsToolbar.style.columnGap = '12px'
+        assetsFigmaBkEl = document.createElement('li')
+        assetsFigmaBkEl.id = assetsFigmaBkId
+        assetsFigmaBkEl.innerHTML = `<a href="javascript:;" style="font-weight: bold; color: #126bff;">
+          通过 Figma 备份源文件
+        </a>`;
+        
+        assetsFigmaBkEl.addEventListener('click', () => {
+          this.$track('figma.app.click.codesign.header')
+          this.figmaDialogShow = true
           
-          const wsFigmaBk = document.createElement('div')
-          wsFigmaBk.id = assetsFigmaBkId
-          wsFigmaBk.className = 'figma-bk-trigger'
-          wsFigmaBk.innerHTML = `<button type="button" class="noborder ten-button ten-button--size-small ten-button--type-default">
-              <span>
-                <i class="com-icon iconfont" style="display: flex;align-items: center;">
-                  <svg t="1647485577281" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2224" width="18" height="18"><path d="M512 512c0-94.4 76.8-171.2 171.2-171.2 94.4 0 171.2 76.8 171.2 171.2s-76.8 171.2-171.2 171.2C588.8 683.2 512 606.4 512 512z" fill="#1ABCFE" p-id="2225"></path><path d="M171.2 852.8c0-94.4 76.8-171.2 171.2-171.2H512v171.2C512 947.2 435.2 1024 340.8 1024s-169.6-76.8-169.6-171.2z" fill="#0ACF83" p-id="2226"></path><path d="M512 0v340.8h171.2c94.4 0 171.2-76.8 171.2-171.2S777.6 0 683.2 0H512z" fill="#FF7262" p-id="2227"></path><path d="M171.2 171.2c0 94.4 76.8 171.2 171.2 171.2H512V0H340.8c-94.4 0-169.6 76.8-169.6 171.2z" fill="#F24E1E" p-id="2228"></path><path d="M171.2 512c0 94.4 76.8 171.2 171.2 171.2H512V340.8H340.8c-94.4 0-169.6 76.8-169.6 171.2z" fill="#A259FF" p-id="2229"></path></svg>
-                </i> 
-                从 Figma 导入源文件
-              </span>
-            </button>`
-          wsFigmaBk.addEventListener('click', () => {
-            this.$track('figma.app.click.codesign.assets')
-            this.figmaDialogShow = true
-          })
-          wsToolbar.appendChild(wsFigmaBk)
-        }
-      }
+          // 避免 popup 常驻
+          document.body.click()
+        });
 
-      const inejctHeaderFigmaBk = () => {
-        let headerFigmaBk = document.getElementById(headerFigmaBkId)
-        let header = document.querySelector('.board-header__item--right')
-
-        if (!headerFigmaBk && header) {
-          headerFigmaBk = document.createElement('button')
-          headerFigmaBk.id = headerFigmaBkId
-          headerFigmaBk.type = 'button'
-          headerFigmaBk.className = 'figma-bk-trigger icon-only ten-button ten-button--size-default ten-button--type-text'
-          headerFigmaBk.innerHTML = `<span>
-              <i class="com-icon iconfont">
-                <svg t="1647485577281" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2224" width="18" height="18"><path d="M512 512c0-94.4 76.8-171.2 171.2-171.2 94.4 0 171.2 76.8 171.2 171.2s-76.8 171.2-171.2 171.2C588.8 683.2 512 606.4 512 512z" fill="#1ABCFE" p-id="2225"></path><path d="M171.2 852.8c0-94.4 76.8-171.2 171.2-171.2H512v171.2C512 947.2 435.2 1024 340.8 1024s-169.6-76.8-169.6-171.2z" fill="#0ACF83" p-id="2226"></path><path d="M512 0v340.8h171.2c94.4 0 171.2-76.8 171.2-171.2S777.6 0 683.2 0H512z" fill="#FF7262" p-id="2227"></path><path d="M171.2 171.2c0 94.4 76.8 171.2 171.2 171.2H512V0H340.8c-94.4 0-169.6 76.8-169.6 171.2z" fill="#F24E1E" p-id="2228"></path><path d="M171.2 512c0 94.4 76.8 171.2 171.2 171.2H512V340.8H340.8c-94.4 0-169.6 76.8-169.6 171.2z" fill="#A259FF" p-id="2229"></path></svg>
-              </i>
-            </span>`
-          headerFigmaBk.addEventListener('click', () => {
-            this.$track('figma.app.click.codesign.header')
-            this.figmaDialogShow = true
-          })
-          header.appendChild(headerFigmaBk)
-        }
+        // 插入到 asssetPopup 的第一个元素之前
+        assetsPopup.insertBefore(assetsFigmaBkEl, assetsPopup.firstChild)
       }
 
       const injectFigmaBkInterval = setInterval(() => {
-        // 源文件页面注入上传按钮
-        if (document.querySelector('.workspace-main__assets--opt')) {
-          if (!document.getElementById(assetsFigmaBkId)) {
-            injectAssetsFigmaBk()
-          }
-        }
-
-        // 画布详情页注入上传按钮
-        if (document.querySelector('.board-header__item--right')) {
-          if (!document.getElementById(headerFigmaBkId)) {
-            inejctHeaderFigmaBk()
-          }
-        }
-      }, 2000)
+        // 画布详情页源文件面板注入备份按钮
+        injectAssetsFigmaBk()
+      }, 1000)
     }
   },
   methods: {

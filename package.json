@@ -1,7 +1,9 @@
 {
-  "name": "import-figma-to-codesign",
+  "name": "figma-backup",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
+  "author": "Luke",
+  "description": "保住肥姑妈（Figma 源文件备份）",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

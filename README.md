@@ -37,3 +37,51 @@ Q: 该脚本是否有安全问题
 Q: 批量下载时可能会遇到提示是否允许下载多个文件
 
 **A: 点击允许即可**
+
+## 贡献代码
+
+### 如何进行本地调试
+
+下载代码并启动本地开发模式，启动后会在本地运行一个 `localhost:3000` 的服务
+
+```shell
+$ git clone git@github.com:loo2k/figma-backup.git
+$ npm i
+$ npm run dev
+```
+
+在 Tampermonkey 中创建一个临时调试用的脚本
+
+```js
+// ==UserScript==
+// @name         保住肥姑妈（Figma 源文件备份）本地调试
+// @namespace    figmahelper
+// @version      0.1
+// @description  Figma 源文件备份
+// @author       Luke
+// @match        *://codesign.qq.com/*
+// @match        *://dev.codesign.qq.com/*
+// @match        *://codesign.woa.com/*
+// @match        *://test-codesign.woa.com/*
+// @match        *://*.figma.com/*
+// @icon         <$ICON$>
+// @grant        GM_addStyle
+// @grant        GM_xmlhttpRequest
+// @connect      *://*.figma.com/*
+// @connect      *://*.codesign.qq.com/*
+// @require      https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js
+// ==/UserScript==
+
+(function () {
+  "use strict";
+  if (location.href === "http://localhost:3000/") return;
+  var script = document.createElement("script");
+  script.type = "module";
+  script.src = "http://localhost:3000/@vite/client";
+  document.body.appendChild(script);
+  var script2 = document.createElement("script");
+  script2.type = "module";
+  script2.src = "http://localhost:3000/src/main.js";
+  document.body.appendChild(script2);
+})();
+```

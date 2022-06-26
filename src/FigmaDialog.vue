@@ -50,7 +50,7 @@
           <t-button 
             theme="primary" 
             size="small" 
-            @click="handleJumpAssets"
+            @click="handleRefreshAssets"
           >
             查看导入的源文件
           </t-button>
@@ -281,8 +281,14 @@ export default {
       if (this.isProcessing) return
       this.$emit('close', false)
     },
-    handleJumpAssets() {
-      location.href = `/workspace/prototype/${this.groupId}/assets`
+    handleRefreshAssets() {
+      const assetsPanel = document.querySelector('.assets-side-panel')
+      if (assetsPanel && assetsPanel.__vue__) {
+        this.$emit('close', false)
+        assetsPanel.__vue__.init()
+      } else {
+        location.href = `/app/design/${this.groupId}`
+      }
     },
     handleContinue() {
       this.isProcessing = false
