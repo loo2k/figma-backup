@@ -1,0 +1,33 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: action/checkout@v2
+        with:
+          ref: master
+      
+      - name: Setup node
+        uses: action/setup-node@v1
+        with:
+          node-version: "16.x"
+      
+      - name: Build
+        run: npm i && npm run build
+
+      - name: Publish
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          local_path: dist
+          remote_path: figma-backup
