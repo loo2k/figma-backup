@@ -9,20 +9,23 @@
 - 🏢 支持切换多个账号和企业空间
 - 📜 支持备份最近/草稿箱/团队的源文件
 - 📦 支持按需下载 .fig 源文件
-- ☁️ 支持 [CoDesign](https://codesign.woa.com/) 源文件云备份
+- ☁️ 支持 [CoDesign](https://codesign.qq.com/) 源文件云备份
 
 ## 如何使用
 
 ### 安装插件
 
-第一步：安装 [Tampermonkey 插件](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+- 第一步：安装 [Violentmonkey 插件](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
+- 第二步：安装 [保住肥姑妈（Figma 源文件备份）](https://luke.gd/figma-backup/figma.user.js) 脚本
 
-第二步：安装 [保住肥姑妈（Figma 源文件备份）](https://luke.gd/figma-backup/figma.user.js) 脚本
+**注意事项：**
 
-*如果你在国内无法正常访问上面的链接，可以使用以下备用链接*
-
-- Tampermonkey 插件：[Firefox](https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/) | [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) | [CRX 下载](https://www.gugeapps.net/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- 保住肥姑妈脚本：[Greasyfork](https://greasyfork.org/zh-CN/scripts/441666) | [jsDelivr](https://cdn.jsdelivr.net/gh/loo2k/figma-backup/figma.user.js)
+- 除了 [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) 你也可以使用 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) 等脚本安装器
+- **如果你在国内无法正常访问上面的链接，可以使用以下备用链接**
+  - [Violentmonkey 安装镜像](https://www.gugeapps.net/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
+  - [Tampermonkey 安装镜像](https://www.gugeapps.net/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+  - [Figma-backup 脚本镜像 - Greasyfork](https://greasyfork.org/zh-CN/scripts/441666)
+  - [Figma-backup 脚本镜像 - jsDelivr](https://cdn.jsdelivr.net/gh/loo2k/figma-backup/figma.user.js)
 
 ### 视频演示
 
@@ -50,21 +53,18 @@ $ npm i
 $ npm run dev
 ```
 
-在 Tampermonkey 中创建一个临时调试用的脚本
+在 Violentmonkey 中创建一个临时调试用的脚本
 
 ```js
 // ==UserScript==
-// @name         保住肥姑妈（Figma 源文件备份）本地调试
+// @name         🚀 本地调试: 保住肥姑妈
 // @namespace    figmahelper
 // @version      0.1
 // @description  Figma 源文件备份
 // @author       Luke
 // @match        *://codesign.qq.com/*
-// @match        *://dev.codesign.qq.com/*
 // @match        *://codesign.woa.com/*
-// @match        *://test-codesign.woa.com/*
 // @match        *://*.figma.com/*
-// @icon         <$ICON$>
 // @grant        GM_addStyle
 // @grant        GM_xmlhttpRequest
 // @connect      *://*.figma.com/*
