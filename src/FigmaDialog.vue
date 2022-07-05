@@ -321,7 +321,7 @@ export default {
             console.log('draftFiles', draftFiles)
             this.files = draftFiles.files
           default:
-            if (/^[\d]{18}$/.test(val)) {
+            if (/^[\d]{18,}$/.test(val)) {
               const team = this.teams.find(team => team.id === val)
               const { folders } = await getFoldersByTeamId(val)
               const folderIds = Object.keys(folders)
