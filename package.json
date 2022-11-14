@@ -1,7 +1,7 @@
 {
   "name": "figma-backup",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Luke",
   "description": "保住肥姑妈（Figma 源文件备份）",
   "scripts": {
@@ -19,6 +19,7 @@
     "vue": "^2.6.14"
   },
   "devDependencies": {
+    "@vue/compiler-dom": "^3.2.45",
     "fs-extra": "^10.1.0",
     "less": "^4.1.2",
     "stylus": "^0.56.0",

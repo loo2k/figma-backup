@@ -269,11 +269,11 @@ export default {
   async mounted() {
     this.$track('plugin.app.dialog.mounted')
 
-    this.$EventBus.$on('DOWNLOAD_FIG', this.fetchFigAndDownload)
+    this.$EventBus.$on('DOWNLOAD_FILE', this.fetchFileAndDownload)
     this.$EventBus.$on('SWITCH_WORKSPACE', this.handleSwitchWorkspace)
   },
   beforeDestroy() {
-    this.$EventBus.$off('DOWNLOAD_FIG', this.fetchFigAndDownload)
+    this.$EventBus.$off('DOWNLOAD_FILE', this.fetchFileAndDownload)
     this.$EventBus.$off('SWITCH_WORKSPACE', this.handleSwitchWorkspace)
   },
   methods: {
@@ -351,10 +351,10 @@ export default {
       this.userState = await getState(orgId)
       this.handleFilterChange(this.currentFilter)
     },
-    async fetchFigAndDownload(key, fileName) {
+    async fetchFileAndDownload(key, fileName) {
       const fileMeta = await getFileMeta(key)
       const figFile = await fetch(fileMeta.canvas_url).then(r => r.blob())
-      saveFileFromBlob(figFile, fileName ? `${fileName}.fig` : `${fileMeta.name}.fig`)
+      saveFileFromBlob(figFile, fileName || `${fileMeta.name}.fig`)
     },
     async handleImportFigmaFiles() {
       this.$track('figma.app.import', this.checked.length || 0)
@@ -410,7 +410,8 @@ export default {
             file.name
           ].filter(e => e).join(' - ')
 
-          await this.fetchFigAndDownload(file.key, fileName)
+          const fileExt = file.editor_type === 'whiteboard' ? 'jam' : 'fig'
+          await this.fetchFileAndDownload(file.key, `${fileName}.${fileExt}`)
         } catch(e) {
           console.log(e)
         } finally {
