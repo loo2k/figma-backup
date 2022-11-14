@@ -18,7 +18,7 @@ export default defineConfig({
       fileName: (format) => `figma.user.js`,
     },
     rollupOptions: {
-      external: ['vue', 'tdesign-vue/esm'],
+      external: ['vue', 'tdesign-vue'],
       output: {
         globals: {
           vue: 'Vue',
@@ -55,13 +55,21 @@ export default defineConfig({
 // @match        *://*.figma.com/*
 // @icon         https://www.google.com/s2/favicons?domain=codesign.qq.com
 // @grant        GM_xmlhttpRequest
+// @grant        GM_getResourceText
+// @grant        GM_addStyle
 // @connect      www.figma.com
 // @connect      codesign.qq.com
 // @require      https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js
 // @require      https://cdn.jsdelivr.net/npm/tdesign-vue@0.37.0/dist/tdesign.min.js
+// @resource     TDESIGN_CSS https://cdn.jsdelivr.net/npm/tdesign-vue@0.37.0/dist/tdesign.min.css
 // @updateURL    https://luke.gd/figma-backup/figma.user.js
 // @downloadURL  https://luke.gd/figma-backup/figma.user.js
 // ==/UserScript==
+
+// Load remote CSS
+// @see https://github.com/Tampermonkey/tampermonkey/issues/835
+const TDesignCSS = GM_getResourceText("TDESIGN_CSS");
+GM_addStyle(TDesignCSS);
 
 `;
       return {
