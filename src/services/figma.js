@@ -13,7 +13,7 @@ export const getWorkspace = async () => {
           const { status, finalUrl } = resp
           const regxUrl = /\/files\/(\d+)?\/?recent\?fuid=(\d+)/i
           if (status !== 200 || !finalUrl || regxUrl.test(finalUrl) === false) {
-            reject(false)
+            return reject(false)
           }
 
           const [, id, fuid] = regxUrl.exec(finalUrl)
